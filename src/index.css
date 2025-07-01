@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@layer utilities {
+    .bg-primary {
+        @apply bg-[#FFFFFF];
+    }
+
+    .btn-primary-bg,
+    .text-brand-tertiary-600 {
+        @apply bg-[#099250];
+    }
+
+    .btn-tertiary-color,
+    .btn-primary-bg_hover {
+        @apply bg-[#087443];
+    }
+
+    .border-brand {
+        @apply bg-[#16B364];
+    }
+
+    .text-primary-900 {
+        @apply text-[#181D27];
+    }
+
+    .text-secondary-700 {
+        @apply text-[#414651];
+    }
+
+    .text-tertiary-600 {
+        @apply text-[#535862];
+    }
+
+    .text-placeholder {
+        @apply text-[#717680];
+    }
+
+    .fg-success-secondary {
+        @apply text-[#17B26A];
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
