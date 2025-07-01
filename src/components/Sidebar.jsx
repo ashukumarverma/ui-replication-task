@@ -1,56 +1,158 @@
+import { useState } from "react";
 const Sidebar = () => {
+  const [isStorageAlert, setIsStorageAlert] = useState(true);
+
   return (
-    <aside className="w-64 h-full md:h-screen bg-[#F8F9FB] flex flex-col justify-between border-r border-gray-200 md:relative fixed top-0 left-0 z-50 overflow-y-auto max-h-screen md:max-h-none">
-      {/* Top Section: Search and Navigation */}
+    <aside
+      className={`w-64 h-full md:h-screen bg-primary flex flex-col justify-between border-r border-secondary md:relative fixed top-0 left-0 z-50 overflow-y-auto max-h-screen md:max-h-none`}
+    >
+      {/* Top section: logo, search bar, and navigation links */}
       <div>
-        {/* Search Bar */}
-        <div className="p-4">
+        {/* Logo section */}
+        <div className={`ml-4 mt-6 flex items-center gap-4`}>
+          <img src="/assets/logo.png" alt="Logo" />
+
+          {/* Placeholder for brand name */}
+          <div className={`w-[97px] h-[32px] rounded-sm`}> </div>
+        </div>
+
+        {/* Search bar */}
+        <div className={`p-4 relative flex items-center`}>
+          <div
+            className={`absolute left-6 top-1/2 transform -translate-y-1/2 p-2`}
+          >
+            <img src="/assets/search.svg" />
+          </div>
+          {/* Search input */}
           <input
             type="text"
             placeholder="Search"
-            className="w-full px-3 py-2 rounded-md bg-[#F1F3F9] border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className={`w-full px-10 py-2 rounded-md border-primary focus:outline-none focus:ring-2`}
           />
+          <div
+            className={`absolute right-6 top-1/2 transform -translate-y-1/2 p-[5px] border-secondary rounded-md`}
+          >
+            <img src="/assets/Shortcut.svg" />
+          </div>
         </div>
-        {/* Navigation Links */}
-        <nav className="mt-2">
-          <ul className="space-y-1">
-            <li><a href="#" className="block px-6 py-2 text-gray-700 hover:bg-green-50 rounded-l-full font-medium">Dashboard</a></li>
-            <li><a href="#" className="block px-6 py-2 text-gray-700 hover:bg-green-50 rounded-l-full font-medium">Product</a></li>
-            <li><a href="#" className="block px-6 py-2 text-gray-700 hover:bg-green-50 rounded-l-full font-medium">Customer</a></li>
-            <li><a href="#" className="block px-6 py-2 text-gray-700 hover:bg-green-50 rounded-l-full font-medium">Marketing</a></li>
-            <li><a href="#" className="block px-6 py-2 text-gray-700 hover:bg-green-50 rounded-l-full font-medium">Reporting</a></li>
+
+        {/* Navigation menu links */}
+        <nav className={`mt-2 text-secondary-700`}>
+          <ul className={`space-y-1`}>
+            {/* menu items with icons */}
+            <li className={`flex px-6 py-2 gap-3`}>
+              <img src={`/assets/dashboard.svg`} /> <a href="#">Dashboard</a>
+            </li>
+            <li className={`flex px-6 py-2 gap-3`}>
+              <img src={`/assets/product.svg`} /> <a href="#">Product</a>
+            </li>
+            <li className={`flex px-6 py-2 gap-3`}>
+              <img src={`/assets/customers.svg`} /> <a href="#">Customer</a>
+            </li>
+            <li className={`flex px-6 py-2 gap-3`}>
+              <img src={`/assets/plane.svg`} /> <a href="#">Marketing</a>
+            </li>
+            <li className={`flex px-6 py-2 gap-3`}>
+              <img src={`/assets/piechart.svg`} /> <a href="#">Reporting</a>
+            </li>
           </ul>
         </nav>
       </div>
-      {/* Bottom Section: Settings, Support, Used Space, User Info */}
-      <div className="p-4 space-y-4">
-        <div className="flex items-center justify-between text-gray-600 text-sm">
-          <span>Settings</span>
-          <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Online</span>
-        </div>
-        <div className="text-gray-600 text-sm">Support</div>
-        <div className="bg-[#F1F3F9] rounded-lg p-3 text-xs text-gray-600">
-          <div className="flex justify-between items-center mb-1">
-            <span>Used space</span>
-            <span className="text-green-600 font-semibold">80%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-1.5 mb-2">
-            <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '80%' }}></div>
-          </div>
-          <div className="flex justify-between items-center">
-            <span>Your team has used 80% of your available space.</span>
-            <button className="ml-2 text-green-600 font-medium">Upgrade plan</button>
+
+      {/* Bottom section */}
+      <div className={`p-4 space-y-4 `}>
+        <div className={`flex items-center justify-between px-2`}>
+          <div className={`flex items-center gap-2`}>
+            <img src={`/assets/settings-01.svg`} alt={`Settings`} />
+            <span className={`text-secondary-700`}>Settings</span>
           </div>
         </div>
-        {/* User Info */}
-        <div className="flex items-center space-x-3 mt-4">
-          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-lg font-bold text-white">C</div>
+
+        {/* Support section with online status */}
+        <div className={`flex items-center justify-between px-2`}>
+          <div className={`flex items-center gap-2`}>
+            <img src={`/assets/support.svg`} alt={`Support`} />
+            <span className={`text-secondary-700`}>Support</span>
+          </div>
+          {/* Online status indicator */}
+          <div
+            className={`border-primary text-secondary-700 flex gap-1 h-[22px] w-[61px] items-center justify-center rounded-md text-xs`}
+          >
+            <div
+              className={`w-[6px] h-[6px] utility-success-500 rounded-full`}
+            ></div>
+            Online
+          </div>
+        </div>
+
+        {/* Storage usage alert card */}
+        <div
+          className={`bg-secondary rounded-lg px-3 py-2 ${
+            isStorageAlert ? "" : "hidden"
+          }`}
+        >
+          <div className={`flex justify-between items-center`}>
+            <span className={`text-primary-900`}>Used space</span>
+            <button onClick={() => setIsStorageAlert(false)}>
+              <img src={`/assets/Button-close-X.svg`} alt={`Close`} />
+            </button>
+          </div>
+
+          {/* Description of storage usage */}
+          <div className={`flex text-xs text-tertiary-600 items-center pb-2`}>
+            <span>
+              Your team has used 80% of your available space. Need more?
+            </span>
+          </div>
+
+          {/* Progress bar showing 80% usage */}
+          <div className={`w-full my-2 bg-gray-200 rounded-full h-1.5 mb-2`}>
+            <div
+              className={`bg-[#099250] h-1.5 rounded-full`}
+              style={{ width: "80%" }}
+            ></div>
+          </div>
+
+          {/* Action buttons */}
+          <div className={`flex text-xs gap-1`}>
+            <button
+              className={`button-tertiary-fg font-medium`}
+              onClick={() => setIsStorageAlert(false)}
+            >
+              Dismiss
+            </button>
+            <button className={`ml-2 button-tertiary-color-fg`}>
+              Upgrade plan
+            </button>
+          </div>
+        </div>
+
+        {/* User profile section */}
+        <div
+          className={`flex items-center space-x-3 mb-1 p-2 rounded-xl border-secondary bg-white relative`}
+        >
+          {/* User avatar with online status */}
+          <div
+            className={`w-10 h-10 rounded-full border-2 border-black/8 relative`}
+          >
+            <div
+              className={`absolute bottom-0 right-0 w-[10px] h-[10px] utility-success-500 rounded-full`}
+            ></div>
+          </div>
+
+          {/* User name and email */}
           <div>
-            <div className="font-medium text-gray-800">Clara Smith</div>
-            <div className="text-xs text-gray-500">clara@bizclues.com</div>
+            <div className={`text-sm text-primary-900`}>Clara Smith</div>
+            <div className={`text-xs text-tertiary-600`}>
+              clara@bizclues.com
+            </div>
           </div>
-          <button className="ml-auto text-gray-400 hover:text-gray-600">
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>
+
+          {/* Dropdown button */}
+          <button
+            className={`absolute right-1 top-1 h-8 w-8 Component button-tertiary-bg_hover flex items-center justify-center rounded-md`}
+          >
+            <img src={`/assets/chevron-selector-vertical.svg`} alt="Dropdown" />
           </button>
         </div>
       </div>
@@ -58,4 +160,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

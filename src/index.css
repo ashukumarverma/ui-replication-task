@@ -5,26 +5,50 @@
         @apply bg-[#FFFFFF];
     }
 
-    .btn-primary-bg,
+    .bg-secondary {
+        @apply bg-[#FAFAFA];
+    }
+
+    .button-primary-bg,
     .text-brand-tertiary-600 {
         @apply bg-[#099250];
     }
 
-    .btn-tertiary-color,
-    .btn-primary-bg_hover {
+    .utility-success-500 {
+        @apply bg-[#099250];
+    }
+
+    .button-tertiary-color,
+    .button-primary-bg_hover {
         @apply bg-[#087443];
     }
 
+    .border-primary {
+        @apply border-[#D5D7DA];
+        @apply border-solid;
+        @apply border-[1px];
+        @apply shadow-xs;
+    }
+
+    .border-secondary {
+        @apply border-[#E9EAEB];
+        @apply border-solid;
+        @apply border-[1px];
+        @apply shadow-xs;
+    }
+
     .border-brand {
-        @apply bg-[#16B364];
+        @apply border-[#16B364];
     }
 
     .text-primary-900 {
         @apply text-[#181D27];
+        @apply font-medium;
     }
 
     .text-secondary-700 {
         @apply text-[#414651];
+        @apply font-medium;
     }
 
     .text-tertiary-600 {
@@ -37,6 +61,20 @@
 
     .fg-success-secondary {
         @apply text-[#17B26A];
+    }
+
+    .button-tertiary-color-fg {
+        @apply text-[#087443];
+        @apply font-medium;
+    }
+
+    .button-tertiary-fg {
+        @apply text-[#535862];
+        @apply font-medium;
+    }
+
+    .button-tertiary-bg_hover {
+        @apply hover:bg-[#FAFAFA];
     }
 }
 
