@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+    @apply font-sans;
+}
+
 @layer utilities {
     .bg-primary {
         @apply bg-[#FFFFFF];
@@ -12,6 +16,13 @@
     .button-primary-bg,
     .text-brand-tertiary-600 {
         @apply bg-[#099250];
+        @apply text-[#FFFFFF];
+        @apply font-medium;
+    }
+
+    .text-brand-secondary-700 {
+        @apply text-[#087443];
+        @apply font-medium;
     }
 
     .utility-success-500 {
@@ -75,6 +86,13 @@
 
     .button-tertiary-bg_hover {
         @apply hover:bg-[#FAFAFA];
+    }
+
+    .button-secondary-border {
+        @apply border-[#D5D7DA];
+        @apply border-solid;
+        @apply border-[1px];
+        @apply shadow-xs;
     }
 }
 

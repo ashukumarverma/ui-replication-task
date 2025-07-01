@@ -16,7 +16,7 @@ const SettingsTabs = ({ activeTab = 0, onTabClick }) => {
           key={tab}
           className={`py-3 px-1 whitespace-nowrap font-medium text-sm border-b-2 transition-colors duration-200 ${
             activeTab === idx
-              ? "border-green-600 text-green-700"
+              ? "border-[#099250] text-brand-secondary-700"
               : "border-transparent text-gray-500 hover:text-green-600"
           }`}
           onClick={() => onTabClick && onTabClick(idx)}

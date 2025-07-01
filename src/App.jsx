@@ -2,6 +2,7 @@ import "./App.css";
 import SettingsPage from "./components/SettingsPage.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import { useState } from "react";
+import "@fontsource/inter";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
