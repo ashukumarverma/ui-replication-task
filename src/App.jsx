@@ -34,7 +34,7 @@ function App() {
           )}
         </button>
         <aside
-          className={`fixed top-0 left-0 h-screen w-64 z-40 bg-[#F8F9FB] border-r border-gray-200 transition-transform duration-200 ${
+          className={`fixed top-0 left-0 h-screen w-74 z-40 bg-[#F8F9FB] border-r border-gray-200 transition-transform duration-200 ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0`}
         >
@@ -47,7 +47,7 @@ function App() {
           ></div>
         )}
       </div>
-      <div className="flex-1 flex flex-col md:pl-64 w-full">
+      <div className="flex-1 flex flex-col md:pl-74 w-full">
         <SettingsPage />
       </div>
     </div>

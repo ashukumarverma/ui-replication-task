@@ -4,7 +4,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`w-64 h-full md:h-screen bg-primary flex flex-col justify-between border-r border-secondary md:relative fixed top-0 left-0 z-50 overflow-y-auto max-h-screen md:max-h-none`}
+      className={`w-74 h-full md:h-screen bg-primary flex flex-col justify-between border-r border-secondary md:relative fixed top-0 left-0 z-50 overflow-y-auto max-h-screen md:max-h-none`}
     >
       {/* Top section: logo, search bar, and navigation links */}
       <div>
@@ -21,7 +21,7 @@ const Sidebar = () => {
           <div
             className={`absolute left-6 top-1/2 transform -translate-y-1/2 p-2`}
           >
-            <img src="/assets/search.svg" />
+            <img src={`/assets/search.svg`} alt="Search" />
           </div>
           {/* Search input */}
           <input
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <div
             className={`absolute right-6 top-1/2 transform -translate-y-1/2 p-[5px] border-secondary rounded-md`}
           >
-            <img src="/assets/Shortcut.svg" />
+            <img src={`/assets/Shortcut.svg`} alt="Shortcut" />
           </div>
         </div>
 
@@ -41,19 +41,19 @@ const Sidebar = () => {
           <ul className={`space-y-1`}>
             {/* menu items with icons */}
             <li className={`flex px-6 py-2 gap-3`}>
-              <img src={`/assets/dashboard.svg`} /> <a href="#">Dashboard</a>
+              <img src={`/assets/dashboard.svg`} alt="dashboard" /> <a href="#">Dashboard</a>
             </li>
             <li className={`flex px-6 py-2 gap-3`}>
-              <img src={`/assets/product.svg`} /> <a href="#">Product</a>
+              <img src={`/assets/product.svg`} alt="product" /> <a href="#">Product</a>
             </li>
             <li className={`flex px-6 py-2 gap-3`}>
-              <img src={`/assets/customers.svg`} /> <a href="#">Customer</a>
+              <img src={`/assets/customers.svg`} alt="customers" /> <a href="#">Customer</a>
             </li>
             <li className={`flex px-6 py-2 gap-3`}>
-              <img src={`/assets/plane.svg`} /> <a href="#">Marketing</a>
+              <img src={`/assets/plane.svg`} alt="marketing" /> <a href="#">Marketing</a>
             </li>
             <li className={`flex px-6 py-2 gap-3`}>
-              <img src={`/assets/piechart.svg`} /> <a href="#">Reporting</a>
+              <img src={`/assets/piechart.svg`} alt="reporting" /> <a href="#">Reporting</a>
             </li>
           </ul>
         </nav>
