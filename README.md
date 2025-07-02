@@ -106,7 +106,7 @@ ui-replication-task/
 1. **Clone the repository**
 
    ```bash
-   git clone [git@github.com:ashukumarverma/ui-replication-task.git]
+   git clone git@github.com:ashukumarverma/ui-replication-task.git
    cd ui-replication-task
    ```
 
@@ -210,7 +210,7 @@ npm run preview
 
 ## 📊 Performance Metrics
 
-- **Lighthouse Score**: 95+ on Performance, Accessibility, and Best Practices
+- **Lighthouse Score**: Performance - 100, Accessibility - 82, and Best Practices - 100, SEO - 83
   ![Lighhouse performance](image.png)
 - **Bundle Size**: Optimized with Vite's tree-shaking
 - **Load Time**: Fast initial page load with efficient asset loading
