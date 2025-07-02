@@ -1,27 +1,76 @@
+import { useState } from "react";
+
 const PasswordChangeForm = () => {
+  // both password values for the form for tracking user input and validation from backend
+  const [password, setPassword] = useState("********");
+  const [newPassword, setNewPassword] = useState("********");
+
   return (
-    <form className="bg-white rounded-lg shadow-sm p-8 space-y-6 mt-8">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Change Password</label>
-        <p className="text-xs text-gray-400 mb-4">Your new password must be different to previously used passwords.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Old Password</label>
-            <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" defaultValue="********" />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">New Password</label>
-            <input type="password" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" defaultValue="********" />
-            <ul className="mt-2 text-xs text-gray-400 space-y-1">
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-green-500 inline-block mr-2"></span>Must be at least 8 characters</li>
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full bg-green-500 inline-block mr-2"></span>Must contain one special character</li>
-            </ul>
-          </div>
-        </div>
+    <div
+      className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
+    >
+      {/* Left side with title and instructions */}
+      <div className={`xl:min-w-[300px] flex flex-col max-md:mb-1 `}>
+        <label className={`text-sm text-secondary-700 mb-1`}>
+          Change Password
+        </label>
+        <p className={`text-sm text-tertiary-600 xl:w-[210px]`}>
+          Your new password must be different to previously used passwords.
+        </p>
       </div>
-      <button type="submit" className="w-full md:w-auto bg-green-600 text-white px-6 py-2 rounded-md font-medium mt-4">Reset password</button>
-    </form>
+
+      {/* Right side with the actual password form */}
+      <div className={`flex flex-col gap-5 flex-1 max-md:mx-auto`}>
+        {/* Old password input */}
+        <div className={`flex flex-col text-[#414651]`}>
+          <label htmlFor="old-password" className={`text-xs font-[500] mb-2`}>
+            Old Password
+          </label>
+          <input
+            type="password"
+            className={`md:w-[360px] w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 font-semibold tracking-widest`}
+            placeholder="old password"
+            defaultValue={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        {/* New password input */}
+        <div className={`flex flex-col text-[#414651]`}>
+          <label htmlFor="new-password" className={`text-xs font-[500] mb-2`}>
+            New Password
+          </label>
+          <input
+            type="password"
+            className={`md:w-[360px] w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 font-semibold tracking-widest`}
+            placeholder="new password"
+            defaultValue={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+        </div>
+
+        {/* Password requirements with checkmark icons */}
+        <ul className={`text-sm text-tertiary-600 space-y-3`}>
+          <li className={`flex items-center gap-2`}>
+            <img src={`/assets/Check-icon.svg`} alt="check-icon" />
+            Must be at least 8 characters
+          </li>
+          <li className={`flex items-center gap-2`}>
+            <img src={`/assets/Check-icon.svg`} alt="check-icon" />
+            Must contain one special character
+          </li>
+        </ul>
+
+        {/* Submit button for password reset */}
+        <button
+          type="button"
+          className={`px-5 py-2 w-[360px]  button-primary-bg rounded-md self-start`}
+        >
+          Reset password
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default PasswordChangeForm; 
+export default PasswordChangeForm;
