@@ -313,17 +313,18 @@ const PersonalInfoForm = () => {
           </p>
         </div>
       </div>
-
-      {/* Country, Role, Mobile and Timezone Section */}
-      <hr className={`my-4 xl:my-6`} />
-      <div className={`grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-6`}>
-        {/* Country Selection */}
-        <div>
-          <label className={` text-sm font-medium text-gray-700 mb-1`}>
-            Country *
-          </label>
+      {/* Country and Mobile Number Section */}
+      <div
+        className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
+      >
+        <label className={`xl:min-w-[300px] text-sm text-secondary-700`}>
+          Country <span className={`text-brand-tertiary-600`}>*</span>
+        </label>
+        <div
+          className={`flex gap-4 pt-1 xl:pt-0 xl:min-w-[480px] xl:max-w-[512px] xl:w-[512px] relative`}
+        >
           <select
-            className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
+            className={`w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 appearance-none bg-white pr-10`}
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           >
@@ -333,119 +334,60 @@ const PersonalInfoForm = () => {
               </option>
             ))}
           </select>
-        </div>
-
-        {/* Mobile Number */}
-        <div>
-          <label className={` text-sm font-medium text-gray-700 mb-1`}>
-            Mobile Number *
-          </label>
-          <div
-            className={`flex flex-col xl:flex-row xl:space-x-2 space-y-2 xl:space-y-0`}
-          >
-            <select
-              className={`px-2 py-2 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
-            >
-              <option>US</option>
-              <option>AU</option>
-              <option>IN</option>
-              <option>GB</option>
-              <option>CA</option>
-              <option>JP</option>
-              <option>CN</option>
-              <option>DE</option>
-              <option>FR</option>
-              <option>BR</option>
-              <option>Other</option>
-            </select>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
-              placeholder="+1 (555) 000-0000"
-            />
-            <button
-              type="button"
-              className={`bg-green-600 text-white px-3 py-1 rounded-md text-xs font-medium`}
-            >
-              Verify
-            </button>
-          </div>
-        </div>
-
-        {/* Timezone Selection */}
-        <div>
-          <label className={` text-sm font-medium text-gray-700 mb-1`}>
-            Timezone
-          </label>
-          <select
-            className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
-            value={timezone}
-            onChange={(e) => setTimezone(e.target.value)}
-          >
-            {timezones.map((tz) => (
-              <option key={tz.value} value={tz.value}>
-                {tz.label}
-              </option>
-            ))}
-          </select>
+          <img
+            src="/assets/down.svg"
+            alt="dropdown arrow"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none w-4 h-4"
+          />
         </div>
       </div>
 
-      {/* Bio Textarea Section */}
-      <div className={`mt-4 xl:mt-6`}>
-        <label className={` text-sm font-medium text-gray-700 mb-1`}>Bio</label>
-        <div className={`bg-[#F8F9FB] border border-gray-300 rounded-md p-2`}>
+      {/* Mobile Number Section */}
+      <div
+        className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
+      >
+        <label className={`xl:min-w-[300px] text-sm text-secondary-700`}>
+          Mobile Number <span className={`text-brand-tertiary-600`}>*</span>
+        </label>
+        <div className={`flex items-center gap-8 pt-1 xl:pt-0`}>
           <div
-            className={`flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-2`}
+            className={`flex border-2 rounded-md border-[#D5D7DA] focus-within:ring-2 focus-within:ring-[#16B364]`}
           >
-            <select
-              className={`text-xs border border-gray-300 rounded px-1 py-0.5`}
-            >
-              <option>Regular</option>
-              <option>Bold</option>
-              <option>Italic</option>
-            </select>
-            <button
-              type="button"
-              className={`text-gray-500 hover:text-gray-700`}
-            >
-              <b>B</b>
-            </button>
-            <button
-              type="button"
-              className={`text-gray-500 hover:text-gray-700 italic`}
-            >
-              I
-            </button>
-            <button
-              type="button"
-              className={`text-gray-500 hover:text-gray-700 underline`}
-            >
-              U
-            </button>
-            <button
-              type="button"
-              className={`text-gray-500 hover:text-gray-700`}
-            >
-              •
-            </button>
-            <button
-              type="button"
-              className={`text-gray-500 hover:text-gray-700`}
-            >
-              1.
-            </button>
+            <div className={`relative`}>
+              <select
+                className={`px-2 py-2 rounded-md appearance-none focus:outline-none bg-white pr-4`}
+              >
+                <option>US</option>
+                <option>AU</option>
+                <option>IN</option>
+                <option>GB</option>
+                <option>CA</option>
+                <option>JP</option>
+                <option>CN</option>
+                <option>DE</option>
+                <option>FR</option>
+                <option>BR</option>
+                <option>Other</option>
+              </select>
+              <img
+                src="/assets/down.svg"
+                alt="dropdown arrow"
+                className="absolute left-10 top-1/2 transform -translate-y-1/2 pointer-events-none w-4 h-4"
+              />
+            </div>
+            <input
+              type="text"
+              className={`xl:w-[320px] w-full px-3 py-2 focus:outline-none`}
+              placeholder="+1 (555) 000-0000"
+              defaultValue={"+1 (555) 000-0000"}
+            />
           </div>
-          <textarea
-            className={`w-full bg-transparent border-none focus:ring-0 text-sm`}
-            rows={3}
-            maxLength={300}
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-          <div className={`text-xs text-gray-400 text-right`}>
-            {300 - bio.length} characters left
-          </div>
+          <button
+            type="button"
+            className={`px-5 py-2 button-primary-bg rounded-md`}
+          >
+            Verify
+          </button>
         </div>
       </div>
     </form>
