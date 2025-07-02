@@ -7,7 +7,7 @@ const SettingsPage = () => {
 
   return (
     <main className={`flex-1 bg-primary p-4 xl:px-6`}>
-      <div className={`flex flex-col xl:flex-row xl:justify-between gap-2`}>
+      <div className={`flex flex-col md:flex-row md:justify-between gap-2`}>
         <h1 className={`py-4 text-3xl text-primary-900`}>Settings</h1>
         <div className={`px-4 relative flex items-center`}>
           <div
@@ -34,7 +34,9 @@ const SettingsPage = () => {
           <div className={`relative`}>
             <PersonalInfoForm />
             <div className={`flex items-center justify-end mt-8 space-x-2`}>
-              <button className={`px-5 py-2 button-secondary-border text-secondary-700 rounded-md`}>
+              <button
+                className={`px-5 py-2 button-secondary-border text-secondary-700 rounded-md`}
+              >
                 Cancel
               </button>
               <button className={`px-5 py-2 button-primary-bg rounded-md`}>

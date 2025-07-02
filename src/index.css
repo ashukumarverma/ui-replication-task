@@ -9,14 +9,19 @@ body {
         @apply bg-[#FFFFFF];
     }
 
-    .bg-secondary {
+    .bg-secondary,
+    .utility-gray-50 {
         @apply bg-[#FAFAFA];
     }
 
-    .button-primary-bg,
-    .text-brand-tertiary-600 {
+    .button-primary-bg {
         @apply bg-[#099250];
         @apply text-[#FFFFFF];
+        @apply font-medium;
+    }
+
+    .text-brand-tertiary-600 {
+        @apply text-[#099250];
         @apply font-medium;
     }
 
@@ -27,6 +32,13 @@ body {
 
     .utility-success-500 {
         @apply bg-[#099250];
+    }
+
+    .utility-gray-200 {
+        @apply border-[#E9EAEB];
+        @apply border-solid;
+        @apply border-[1px];
+        @apply shadow-xs;
     }
 
     .button-tertiary-color,
