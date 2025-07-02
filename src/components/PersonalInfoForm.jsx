@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Country list with code, name, and flag
 const countries = [
@@ -16,16 +16,20 @@ const countries = [
 
 // Timezone list with value and label
 const timezones = [
-  { value: "PST", label: "Pacific Standard Time (PST) UTC-08:00" },
-  { value: "EST", label: "Eastern Standard Time (EST) UTC-05:00" },
-  { value: "CST", label: "Central Standard Time (CST) UTC-06:00" },
-  { value: "MST", label: "Mountain Standard Time (MST) UTC-07:00" },
-  { value: "GMT", label: "Greenwich Mean Time (GMT) UTC+00:00" },
-  { value: "CET", label: "Central European Time (CET) UTC+01:00" },
-  { value: "IST", label: "Indian Standard Time (IST) UTC+05:30" },
-  { value: "AEST", label: "Australian Eastern Standard Time (AEST) UTC+10:00" },
-  { value: "JST", label: "Japan Standard Time (JST) UTC+09:00" },
-  { value: "CST", label: "China Standard Time (CST) UTC+08:00" },
+  { value: "PST", label: "Pacific Standard Time (PST)", zone: "UTC-08:00" },
+  { value: "EST", label: "Eastern Standard Time (EST)", zone: "UTC-05:00" },
+  { value: "CST", label: "Central Standard Time (CST)", zone: "UTC-06:00" },
+  { value: "MST", label: "Mountain Standard Time (MST)", zone: "UTC-07:00" },
+  { value: "GMT", label: "Greenwich Mean Time (GMT)", zone: "UTC+00:00" },
+  { value: "CET", label: "Central European Time (CET)", zone: "UTC+01:00" },
+  { value: "IST", label: "Indian Standard Time (IST)", zone: "UTC+05:30" },
+  {
+    value: "AEST",
+    label: "Australian Eastern Standard Time (AEST)",
+    zone: "UTC+10:00",
+  },
+  { value: "JST", label: "Japan Standard Time (JST)", zone: "UTC+09:00" },
+  { value: "CST_China", label: "China Standard Time (CST)", zone: "UTC+08:00" },
 ];
 
 const PersonalInfoForm = () => {
@@ -98,6 +102,24 @@ const PersonalInfoForm = () => {
   const [password, setPassword] = useState("********");
   const [newPassword, setNewPassword] = useState("********");
   const [timezonePopUp, setTimeZonePopUp] = useState(false);
+  const [isTimezoneDropdownOpen, setIsTimezoneDropdownOpen] = useState(false);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isTimezoneDropdownOpen &&
+        !event.target.closest(".timezone-dropdown")
+      ) {
+        setIsTimezoneDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isTimezoneDropdownOpen]);
 
   return (
     <form className={`bg-primary`}>
@@ -156,11 +178,16 @@ const PersonalInfoForm = () => {
           Email address <span className={`text-brand-tertiary-600`}>*</span>
         </label>
         <div className="flex items-center gap-8">
-          <input
-            type="email"
-            className={`xl:min-w-[480px] xl:max-w-[512px] xl:w-[512px] w-full px-3 py-2 border-brand border-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#16B364]`}
-            defaultValue="clara@bizclues.com"
-          />
+          <div className="relative xl:min-w-[480px] xl:max-w-[512px] xl:w-[512px] w-full">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
+              <img src={`/assets/mail.svg`} alt="mail" />
+            </div>
+            <input
+              type="email"
+              className={`w-full pl-10 pr-3 py-2 border-brand border-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#16B364]`}
+              defaultValue="clara@bizclues.com"
+            />
+          </div>
           <button
             type="button"
             className={`px-5 py-2 button-primary-bg rounded-md`}
@@ -418,22 +445,53 @@ const PersonalInfoForm = () => {
         <div
           className={`flex gap-4 pt-1 xl:pt-0 xl:min-w-[480px] xl:max-w-[512px] xl:w-[512px] relative`}
         >
-          <select
-            className={`xl:w-[512px] w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 appearance-none`}
-            value={timezone}
-            onChange={(e) => setTimezone(e.target.value)}
-          >
-            {timezones.map((tz) => (
-              <option key={tz.value} value={tz.value}>
-                {tz.label}
-              </option>
-            ))}
-          </select>
-          <img
-            src="/assets/down.svg"
-            alt="dropdown arrow"
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none w-4 h-4"
-          />
+          <div className="relative w-full">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
+              <img src="/assets/clock.svg" alt="clock" className="w-4 h-4" />
+            </div>
+
+            {/* Custom Dropdown */}
+            <div className="relative timezone-dropdown">
+              <button
+                type="button"
+                className={`xl:w-[512px] w-full pl-10 pr-10 py-2 border-primary rounded-md focus:outline-none focus:ring-1 appearance-none bg-white text-left`}
+                onClick={() =>
+                  setIsTimezoneDropdownOpen(!isTimezoneDropdownOpen)
+                }
+              >
+                <span className="text-[#181D27] font-[500]">
+                  {timezones.find((tz) => tz.value === timezone)?.label}
+                </span>
+                <span className="text-[#535862] font-[400] ml-1">
+                  {timezones.find((tz) => tz.value === timezone)?.zone}
+                </span>
+              </button>
+
+              <img
+                src="/assets/down.svg"
+                alt="dropdown arrow"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none w-4 h-4"
+              />
+
+              {isTimezoneDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-white border border-[#E9EAEB] rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
+                  {timezones.map((tz) => (
+                    <div
+                      key={tz.value}
+                      className="px-3 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                      onClick={() => {
+                        setTimezone(tz.value);
+                        setIsTimezoneDropdownOpen(false);
+                      }}
+                    >
+                      <span className="text-secondary-700">{tz.label}</span>
+                      <span className="text-tertiary-600 ml-1">{tz.zone}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
