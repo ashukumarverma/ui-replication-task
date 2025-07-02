@@ -6,7 +6,7 @@ const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <main className={`flex-1 bg-primary p-4 xl:px-6`}>
+    <main className={`flex-1 bg-primary p-4 pb-12 xl:px-6`}>
       <div className={`flex flex-col md:flex-row md:justify-between gap-2`}>
         <h1 className={`py-4 text-3xl text-primary-900`}>Settings</h1>
         <div className={`px-4 relative flex items-center`}>
