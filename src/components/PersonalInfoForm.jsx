@@ -94,6 +94,10 @@ const PersonalInfoForm = () => {
       setIsDragOver(false);
     }
   };
+
+  const [password, setPassword] = useState("********");
+  const [newPassword, setNewPassword] = useState("********");
+
   return (
     <form className={`bg-primary`}>
       {/* Personal Info Section */}
@@ -227,81 +231,92 @@ const PersonalInfoForm = () => {
       </div>
 
       {/* Change Password Section */}
-      <hr className={`my-4 xl:my-6`} />
-      <h2 className={`text-lg font-semibold text-gray-900 mb-2 xl:mb-4`}>
-        Change Password
-      </h2>
-      <div className={`flex-1 gap-4 xl:gap-6 mb-2`}>
-        <div>
-          <p className={`text-xs text-gray-400 mb-2`}>
+      <div
+        className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
+      >
+        <div className={`xl:min-w-[300px] flex flex-col max-md:mb-1 `}>
+          <label className={`text-sm text-secondary-700 mb-1`}>
+            Change Password
+          </label>
+          <p className={`text-sm text-tertiary-600 xl:w-[210px]`}>
             Your new password must be different to previously used passwords.
           </p>
-          <div
-            className={`flex flex-col xl:flex-row xl:space-x-4 space-y-2 xl:space-y-0 mb-2`}
-          >
+        </div>
+        <div className={`flex flex-col gap-5 flex-1 max-md:mx-auto`}>
+          <div className={`flex flex-col text-[#414651]`}>
+            <label htmlFor="old-password" className={`text-xs font-[500] mb-2`}>
+              Old Password
+            </label>
             <input
               type="password"
-              className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
-              placeholder="Old Password"
-              defaultValue="********"
+              className={`md:w-[360px] w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 font-semibold tracking-widest`}
+              placeholder="old password"
+              defaultValue={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <input
-              type="password"
-              className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500`}
-              placeholder="New Password"
-              defaultValue="********"
-            />
-            <button
-              type="button"
-              className={`w-full bg-green-600 text-white px-6 py-2 rounded-md font-medium`}
-            >
-              Reset password
-            </button>
           </div>
-          <ul className={`mt-2 text-xs text-gray-400 space-y-1`}>
-            <li className={`flex items-center`}>
-              <span
-                className={`w-2 h-2 rounded-full bg-green-500 inline- mr-2`}
-              ></span>
+          <div className={`flex flex-col text-[#414651]`}>
+            <label htmlFor="new-password" className={`text-xs font-[500] mb-2`}>
+              New Password
+            </label>
+            <input
+              type="password"
+              className={`md:w-[360px] w-full px-3 py-2 border-primary rounded-md focus:outline-none focus:ring-1 font-semibold tracking-widest`}
+              placeholder="new password"
+              defaultValue={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </div>
+          <ul className={`text-sm text-tertiary-600 space-y-3`}>
+            <li className={`flex items-center gap-2`}>
+              <img src={`/assets/Check-icon.svg`} alt="check-icon" />
               Must be at least 8 characters
             </li>
-            <li className={`flex items-center`}>
-              <span
-                className={`w-2 h-2 rounded-full bg-green-500 inline- mr-2`}
-              ></span>
+            <li className={`flex items-center gap-2`}>
+              <img src={`/assets/Check-icon.svg`} alt="check-icon" />
               Must contain one special character
             </li>
           </ul>
+          <button
+            type="button"
+            className={`px-5 py-2 w-[360px]  button-primary-bg rounded-md self-start`}
+          >
+            Reset password
+          </button>
+        </div>
+      </div>
+
+      {/* Role Section */}
+      <div
+        className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
+      >
+        <label className={`xl:min-w-[300px] text-sm text-secondary-700`}>
+          Role
+        </label>
+        <div className={`flex flex-col pt-1 xl:pt-0`}>
+          <input
+            type="text"
+            className={`xl:w-[512px] w-full px-3 py-2 border-primary rounded-md text-tertiary-600 cursor-not-allowed bg-disabled`}
+            value="Admin"
+            readOnly
+          />
+          <p className={`text-sm text-tertiary-600 mt-1 xl:w-[512px]`}>
+            Please note the role can be changed through{" "}
+            <span className={`font-semibold`}>
+              Settings &gt; Team &gt; Edit Roles
+            </span>
+            ,{" "}
+            <a href="#" className={`underline font-semibold`}>
+              click here
+            </a>{" "}
+            to change the role.
+          </p>
         </div>
       </div>
 
       {/* Country, Role, Mobile and Timezone Section */}
       <hr className={`my-4 xl:my-6`} />
       <div className={`grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-6`}>
-        {/* Role (read-only) */}
-        <div>
-          <label className={` text-sm font-medium text-gray-700 mb-1`}>
-            Role
-          </label>
-          <input
-            type="text"
-            className={`w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-500 cursor-not-allowed`}
-            value="Admin"
-            readOnly
-          />
-          <p className={`text-xs text-gray-400 mt-1`}>
-            Please note the role can be changed through{" "}
-            <span className={`font-semibold text-gray-700`}>
-              Settings &gt; Team &gt; Edit Roles
-            </span>
-            ,{" "}
-            <a href="#" className={`text-green-600 underline`}>
-              click here
-            </a>{" "}
-            to change the role.
-          </p>
-        </div>
-
         {/* Country Selection */}
         <div>
           <label className={` text-sm font-medium text-gray-700 mb-1`}>
