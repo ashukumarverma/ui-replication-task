@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Country list with code, name, and flag
 const countries = [
@@ -35,6 +35,65 @@ const PersonalInfoForm = () => {
     "I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
   );
 
+  // State to track if user is currently dragging a file over the upload area
+  const [isDragOver, setIsDragOver] = useState(false);
+  // Reference to the hidden file input element for programmatic clicks
+  const fileInputRef = useRef(null);
+
+  // Function to trigger the hidden file input when user clicks the upload area
+  const handleClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  // Handle file selection when user chooses a file through the file dialog
+  const handleFileChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log("Selected file:", file);
+      // we can handle the file upload here
+    }
+  };
+
+  // Handle when user drops a file onto the upload area
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false); // Reset the drag state since drop is complete
+
+    const files = event.dataTransfer.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log("Dropped file:", file);
+    }
+  };
+
+  // Handle when user drags a file over the upload area (required for drop to work)
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.dataTransfer.dropEffect = "copy"; // Show copy cursor icon
+  };
+
+  // Handle when user first drags a file into the upload area
+  const handleDragEnter = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log("Drag enter detected");
+    setIsDragOver(true); // Show visual feedback that file can be dropped here
+  };
+
+  // Handle when user drags a file out of the upload area
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log("Drag leave detected");
+    // Only hide the drag feedback if we're actually leaving the drop zone entirely
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsDragOver(false);
+    }
+  };
   return (
     <form className={`bg-primary`}>
       {/* Personal Info Section */}
@@ -111,44 +170,59 @@ const PersonalInfoForm = () => {
       <div
         className={`flex flex-col xl:flex-row mb-4 xl:mb-6 border-b border-[#E9EAEB] pb-4 xl:pb-6`}
       >
-        <label
-          className={`xl:min-w-[300px] text-sm font-medium text-gray-700 mb-1`}
-        >
-          Your photo <span className={`text-gray-400`}>(optional)</span>
-        </label>
-        <div className={`flex items-center space-x-4`}>
-          <div
-            className={`w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-400`}
-          >
-            O
-          </div>
-          <label
-            className={`flex-1 cursor-pointer border-2 border-dashed border-green-500 rounded-lg p-4 text-center text-xs text-gray-500 hover:border-green-600 transition-colors`}
-          >
-            <div className={`flex flex-col items-center justify-center`}>
-              <svg
-                className={`mx-auto mb-1`}
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 16v-8m0 0l-4 4m4-4l4 4"
-                />
-              </svg>
-              Click to upload or drag and drop
-              <br />
-              <span className={`text-gray-400`}>
-                SVG, PNG, JPG or GIF (max. 800x400px)
-              </span>
-            </div>
-            <input type="file" className={`hidden`} />
+        <div className={`xl:min-w-[300px] flex flex-col max-md:mb-1 `}>
+          <label className={`text-sm text-secondary-700`}>
+            Your photo <span className={`text-brand-tertiary-600`}>*</span>{" "}
+            <img
+              src="/assets/question.svg"
+              alt="photo!"
+              className="inline-block"
+            />
           </label>
+          <p className={`text-sm text-tertiary-600`}>
+            This will be displayed on your profile.
+          </p>
+        </div>
+        <div className={`flex gap-5`}>
+          <div
+            className={`w-16 h-16 rounded-full border-2 border-black/8`}
+          ></div>
+          <div
+            className={`w-[428px] h-[126px] cursor-pointer border-2 rounded-md p-4 text-center text-xs ${
+              isDragOver
+                ? "bg-[#FAFAFA] ring-1 ring-[#16B364] border-brand"
+                : "border-secondary "
+            }`}
+            onClick={handleClick}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+          >
+            {/* Hidden File Input */}
+            <input
+              type="file"
+              accept=".svg,.png,.jpg,.jpeg,.gif"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleFileChange}
+            />
+
+            {/* UI */}
+            <div className="flex flex-col gap-3 items-center">
+              <div className="h-10 w-10 rounded-md border border-[#E9EAEB] bg-white flex items-center justify-center shadow-xs">
+                <img src="/assets/upload.svg" alt="Upload Icon" />
+              </div>
+              <div className="text-sm text-tertiary-600">
+                <span className="font-medium button-tertiary-color-fg">
+                  Click to upload
+                </span>{" "}
+                or drag and drop
+                <br />
+                <span>SVG, PNG, JPG or GIF (max. 800x400px)</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
